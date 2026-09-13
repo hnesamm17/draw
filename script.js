@@ -8,6 +8,7 @@ let eraser = false;
 let fill = "#000";
 
 let clear = false;
+let sizeeraser = 30;
 
 let ctx = draw.getContext("2d");
 draw.width = draw.getBoundingClientRect().width;
@@ -35,11 +36,12 @@ function active_button(name) {
 draw.addEventListener("mousemove", (e) => {
   drp.style.top = e.clientY + "px";
   drp.style.left = e.clientX + "px";
-  if (eraser && clear) ctx.clearRect(e.clientX - 20, e.clientY - 20, 20, 20);
+  if (eraser && clear)
+    ctx.clearRect(e.clientX - 20, e.clientY - 20, sizeeraser, sizeeraser);
 });
 draw.addEventListener("mouseleave", (e) => {
-  drp.style.top = "32%";
-  drp.style.left = "30%";
+  drp.style.top = "5%";
+  drp.style.left = "58%";
 });
 
 bpen.addEventListener("click", () => {
@@ -59,7 +61,7 @@ draw.addEventListener("mousedown", (e) => {
     ctx.strokeStyle = fill;
   }
   if (eraser) {
-    ctx.clearRect(e.clientX - 20, e.clientY - 20, 20, 20);
+    ctx.clearRect(e.clientX - 20, e.clientY - 20, sizeeraser, sizeeraser);
     clear = true;
   }
 });
@@ -86,3 +88,18 @@ document.querySelector(".size").oninput = () => {
   ctx.lineWidth = document.querySelector(".size").value;
 };
 //------------
+document.querySelector(".sizee").onchange = () => {
+  let val = document.querySelector(".sizee").value;
+  if (/^[2-9]\d$/.test(val)) {
+    sizeeraser = Number(val);
+  } else {
+    alert("you should choose a number bigger 19!!");
+  }
+};
+//
+//------------caler all
+document.querySelector(".ca").onclick = () => {
+  ctx.clearRect(0,0,draw.width,draw.height);
+};
+//
+
