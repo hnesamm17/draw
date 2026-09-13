@@ -93,13 +93,12 @@ document.querySelector(".sizee").onchange = () => {
   if (/^[2-9]\d$/.test(val)) {
     sizeeraser = Number(val);
   } else {
-    alert("you should choose a number bigger 19!!");
+    alert("you should choose a number bigger 19 and smaller 100!!");
   }
 };
 //
 //------------caler all
 document.querySelector(".ca").onclick = () => {
-  ctx.clearRect(0,0,draw.width,draw.height);
+  ctx.clearRect(0, 0, draw.width, draw.height);
 };
 //
-
