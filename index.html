@@ -4,8 +4,172 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>draw</title>
+    <style>
+      body {
+        width: 100vw;
+        height: 100vh;
+        font-family: sans-serif;
+        display: grid;
+        grid-template-rows: 80% 20%;
+        grid-template-columns: 70% 30%;
+        justify-items: center;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        gap: 20px;
+        padding: 20px;
+        box-sizing: border-box;
+        margin: 0;
+        background: linear-gradient(
+          to top left,
+          rgb(6, 142, 110),
+          rgb(255, 81, 0),
+          rgb(72, 0, 255)
+        );
+        background-position: 25% 25%;
+        background-size: 200% 200%;
+        animation: bgc 15s ease infinite alternate 2s;
+      }
+      div {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.263);
+        border-radius: 20px;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      canvas {
+        background-color: rgb(250, 225, 225);
+        position: relative;
+        width: 90%;
+        height: 90%;
+        cursor: none;
+      }
+      div:nth-child(3) {
+        grid-column: 2/-1;
+        grid-row: 1/2;
+        display: flex;
+        align-items: start;
+        justify-content: center;
+      }
+      div:nth-child(2) {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        overflow: scroll;
+        scrollbar-width: none;
+        gap: 10px;
+      }
+      div:nth-child(2)::-webkit-scrollbar {
+        display: none;
+      }
+      div:nth-child(2) button {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: none;
+        background-color: rgba(0, 0, 0, 0.405);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .drop {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: radial-gradient(red, rgba(252, 96, 96, 0.39));
+        top: 32%;
+        left: 30%;
+      }
+      button#active-btn {
+        background-color: rgb(250, 252, 251);
+      }
+      #active-btn svg {
+        fill: black;
+      }
+
+      div:nth-child(3) table {
+        width: 60%;
+        height:fit-content;
+        border-spacing: 30px;
+        text-align: center;
+      }
+
+      input[type="color"] {
+        border: none;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+      }
+      input[type="number"] {
+        width: 50px;
+        height: 25px;
+        font-weight: bold;
+        text-align: center;
+      }
+      @keyframes bgc {
+        50% {
+          background-position: 100% 100%;
+        }
+      }
+    </style>
   </head>
   <body>
+    <div>
+      <canvas></canvas>
+      <div class="drop"></div>
+    </div>
+    <div>
+      <button class="pen" id="active-btn">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="50%"
+          height="50%"
+          fill="white"
+          class="bi bi-vector-pen"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"
+          />
+          <path
+            fill-rule="evenodd"
+            d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086z"
+          />
+        </svg>
+      </button>
+
+      <button class="eraser">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="50%"
+          height="50%"
+          fill="WHITE"
+          class="bi bi-eraser-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828zm.66 11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293z"
+          />
+        </svg>
+      </button>
+    </div>
+    <div>
+      <table>
+        <tr>
+          <td><input type="color" class="color" /></td>
+          <td>color</td>
+        </tr>
+        <tr>
+          <td><input type="number" value="1" class="size" /></td>
+          <td>size-line</td>
+        </tr>
+      </table>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
