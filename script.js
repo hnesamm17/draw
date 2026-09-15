@@ -102,3 +102,12 @@ document.querySelector(".ca").onclick = () => {
   ctx.clearRect(0, 0, draw.width, draw.height);
 };
 //
+//export
+document.querySelector(".exp").addEventListener("click", () => {
+  let hrf = draw.toDataURL("image/png");
+  let a = document.createElement("a");
+  a.href = hrf;
+  a.download = "pic.png";
+  a.click();
+});
+//-----------------
